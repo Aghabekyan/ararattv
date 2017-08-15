@@ -1,0 +1,56 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load embed_video_tags %}
+
+{% block title %} | {{article.title|safe}}{% endblock %}
+
+{% block main %}
+
+	<div class="content">
+		<div class="container last-videos">
+			<div class="col-70">
+				<h3><span class="date">29 Հուլիս, 2017</span>{{article.title|safe}}</h3>
+				{% video article.video query="rel=0&wmode=transparent" as my_video %}
+					<iframe  src="{{ my_video.url }}" frameborder="0" allowfullscreen></iframe>
+				{% endvideo %}
+				<div class="clearfix">
+					<div class="right social-icons">
+						<a class="icon-facebook" href="#"></a>
+						<a class="icon-social-youtube" href="#"></a>
+						<a class="icon-twitter" href=""></a>
+						<a class="icon-vkontakte" href=""></a>
+						<a class="icon-social-skype" href=""></a>
+					</div>
+				</div>
+				<div class="video-description">
+					{{article.desc|safe}}
+				</div>
+				<div class="video-galery slider fotorama"
+				     data-loop="true"
+				     data-width="100%"
+				     data-autoplay="false"
+				     data-arrows="true"
+				     data-click="true"
+				     data-swipe="true"
+				     data-transition="slide">
+					{% for item in article.images.all %}
+				 		<img src="{{ item.image.url }}">
+					{% endfor %}
+				</div>
+					<!-- Saq estex dir commentneri mas@ -->
+			</div>
+			<ul class="col-30">
+				<li>
+					<div class="col-40 icon-youtube-play">
+						<img src="images/slide3.jpg">
+					</div>
+					<h3 class="col-60">Հայ օդաչուի սխրանքը՝ Ստամբուլի օդանավակայանում <span class="date">29.07.2017</span></h3>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+
+
+{% endblock %}

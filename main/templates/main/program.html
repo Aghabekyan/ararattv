@@ -1,0 +1,74 @@
+{% extends "main/base.html" %}
+{% load thumbnail %}
+
+{% block title %}Category{% endblock %}
+
+{% block main %}
+
+
+    <div class="content">
+      <div class="all-list-programs">
+        <div class="container">
+          <h2 class="heading">ՀԱՅԼՈՒՐ Լրատվական</h2>
+          <ul class="program-last-videos list-inline">
+            {% for item in data %}
+              <li class="col-25">
+                 <a href="{% url 'article' item.id %}">
+                  <div class="icon-youtube-play">
+                    <img src="{% thumbnail item.img 240x150 crop='smart' %}">
+                  </div>
+                  <h3><span class="date">{{item.publish_date|date:"d/m/y H:i:s"}}</span>{{item.title|truncatechars:50}}</h3>
+                </a>
+              </li>
+            {% endfor %}           
+          </ul>
+          <ul class="pagination list-inline">
+            <li><button class="icon-angle-left"></button></li>
+            <li><button class="active">1</button></li>
+            <li><button>2</button></li>
+            <li><button>3</button></li>
+            <li><button>4</button></li>
+            <li><button>5</button></li>
+
+            <li><button class="icon-angle-right"></button></li>
+          </ul>
+
+
+
+
+
+{% if data.has_other_pages %}
+  <ul class="pagination list-inline">
+    {% if data.has_previous %}
+      <li><button class="icon-angle-left"><a href="?page={{ users.previous_page_number }}">&laquo;</a></button></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in data.paginator.page_range %}
+      {% if data.number == i %}
+        <li><button class="active">{{ i }}</button></li>
+      {% else %}
+        <li><a class="active">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if data.has_next %}
+            <li><button class="icon-angle-right"><a href="?page={{ users.next_page_number }}">&raquo;</a></button></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
