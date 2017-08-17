@@ -22,12 +22,14 @@
 							 <div data-img="
 								{% if item.video %}
 									{% video item.video as my_video %}
-										{% thumbnail my_video.thumbnail 1400x850 crop='smart' target='10,20' as thumb %}
-										{{thumb.url}}
+										{% thumbnail my_video.thumbnail  '600x420' crop='center' as im %}
+										  {{ im.url }}
+										{% endthumbnail %}
 									{% endvideo %}
 								{% elif item.img %}
-									{% thumbnail item.img 1400x850 crop='smart' target='10,20' as thumb %}
-									{{thumb.url}}
+										{% thumbnail item.img  '600x420' crop='center' as im %}
+										  {{ im.url }}
+										{% endthumbnail %}
 								{% endif %}
 							 ">
 							    <div class="description">
@@ -48,10 +50,11 @@
 											<img src="{{my_video.thumbnail}}">
 										{% endvideo %}
 									{% elif item.img %}
-										{% thumbnail item.img 103x55  crop='smart' as thumb %}
-										<img src="{{thumb.url}}">
+										{% thumbnail item.img  '103x55' crop='center' as im %}
+											<img src="{{im.url}}">
+										{% endthumbnail %}
 									{% endif %}
-									<p><span class="date">21.07.2017 15:12</span>
+									<p><span class="date">{{item.publish_date|date:"j.m.Y H:i" }}</span>
 										{{item.title}}
 									</p>
 								</a>
@@ -69,35 +72,13 @@
 					<div class="tv-program col-50">
 						<h3>Ծրագիր</h3>
 						<h5 class="today">Այսօր, 22.07.2017 Շաբաթ</h5>
-						<ul>
-							<li>
-								<span class="time">19:00</span>
-								<span class="program-name">Հայլուր</span>
-							</li>
-							<li>
-								<span class="time">20:00</span>
-								<span class="program-name">Գ/Ֆ Քեյթն ու Լեոն</span>
-							</li>
-							<li>
-								<span class="time">21:30</span>
-								<span class="program-name">Նաիրյան արկածներ</span>
-							</li>
-							<li>
-								<span class="time">22:30</span>
-								<span class="program-name">Շտապ Օգնություն</span>
-							</li>
-							<li>
-								<span class="time">23:00</span>
-								<span class="program-name">Հայլուր</span>
-							</li>
-							<li>
-								<span class="time">00:00</span>
-								<span class="program-name">Անտիպատմություն</span>
-							</li>
-							<li>
-								<span class="time">00:00</span>
-								<span class="program-name">Անտիպատմություն</span>
-							</li>
+						<ul>						
+							{% for item in program_date_data %}
+								<li>
+									<span class="time">{{item.date|date:"H:i" }}</span>
+									<span class="program-name">{{item.title}}</span>
+								</li>
+							{% endfor %}	
 						</ul>
 					</div>
 				</div>
@@ -219,103 +200,133 @@
 						<div class="col-50">
 							<h3>Հայլուր<span>Ամեն օր, 21:00</span></h3>
 							<ul>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/slide1.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/haylur2.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/haylur3.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/slide2.jpg">
-								</li>
+								{% for item in program_1_data %}	
+									<li class="col-50 icon-youtube-play">
+										<a href="{% url 'article' item.id %}">
+											{% if item.video %}
+												{% video item.video as my_video %}
+													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+														<img src="{{ im.url }}">
+													{% endthumbnail %}
+												{% endvideo %}
+											{% elif item.img %}
+												{% thumbnail item.img  '280x180' crop='center' as im %}
+													<img src="{{im.url}}">
+												{% endthumbnail %}
+											{% endif %}
+										</a>
+									</li>
+								{% endfor %}
 							</ul>
 						</div>
 						<div class="col-50">
 							<h3>Նաիրյան Արկածներ<span>Կրկ, 22:00</span></h3>
 							<ul>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/nairyan1.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/nairyan2.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/nairyan3.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/nairyan4.jpg">
-								</li>
+								{% for item in program_2_data %}	
+									<li class="col-50 icon-youtube-play">
+										<a href="{% url 'article' item.id %}">
+											{% if item.video %}
+												{% video item.video as my_video %}
+													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+														<img src="{{ im.url }}">
+													{% endthumbnail %}
+												{% endvideo %}
+											{% elif item.img %}
+												{% thumbnail item.img  '280x180' crop='center' as im %}
+													<img src="{{im.url}}">
+												{% endthumbnail %}
+											{% endif %}
+										</a>
+									</li>
+								{% endfor %}
 							</ul>
 						</div>
 						<div class="col-50">
 							<h3>Շտապ Օգնություն<span>Երկ - Ուրբ, 19:00</span></h3>
 							<ul>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/shtapognutyun1.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/shtapognutyun2.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/shtapognutyun3.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/shtapognutyun4.jpg">
-								</li>
+								{% for item in program_3_data %}	
+									<li class="col-50 icon-youtube-play">
+										<a href="{% url 'article' item.id %}">
+											{% if item.video %}
+												{% video item.video as my_video %}
+													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+														<img src="{{ im.url }}">
+													{% endthumbnail %}
+												{% endvideo %}
+											{% elif item.img %}
+												{% thumbnail item.img  '280x180' crop='center' as im %}
+													<img src="{{im.url}}">
+												{% endthumbnail %}
+											{% endif %}
+										</a>
+									</li>
+								{% endfor %}
 							</ul>
 						</div>
 						<div class="col-50">
 							<h3>Անտիպատմություն<span>Ամեն օր, 17:00</span></h3>
 							<ul>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/antipatmutyun1.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/antipatmutyun2.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/antipatmutyun3.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/antipatmutyun4.jpg">
-								</li>
+								{% for item in program_4_data %}	
+									<li class="col-50 icon-youtube-play">
+										<a href="{% url 'article' item.id %}">
+											{% if item.video %}
+												{% video item.video as my_video %}
+													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+														<img src="{{ im.url }}">
+													{% endthumbnail %}
+												{% endvideo %}
+											{% elif item.img %}
+												{% thumbnail item.img  '280x180' crop='center' as im %}
+													<img src="{{im.url}}">
+												{% endthumbnail %}
+											{% endif %}
+										</a>
+									</li>
+								{% endfor %}
 							</ul>
 						</div>
 						<div class="col-50">
 							<h3>Տոհմածառ<span>Երք 18:00</span></h3>
 							<ul>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/tohmacar1.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/tohmacar1.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/tohmacar1.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/tohmacar1.jpg">
-								</li>
+								{% for item in program_5_data %}	
+									<li class="col-50 icon-youtube-play">
+										<a href="{% url 'article' item.id %}">
+											{% if item.video %}
+												{% video item.video as my_video %}
+													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+														<img src="{{ im.url }}">
+													{% endthumbnail %}
+												{% endvideo %}
+											{% elif item.img %}
+												{% thumbnail item.img  '280x180' crop='center' as im %}
+													<img src="{{im.url}}">
+												{% endthumbnail %}
+											{% endif %}
+										</a>
+									</li>
+								{% endfor %}
 							</ul>
 						</div>
 						<div class="col-50">
 							<h3>Օպոնենտ<span>Երկ, Չրք, 19:30</span></h3>
 							<ul>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/oponent1.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/oponent2.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/oponent3.jpg">
-								</li>
-								<li class="col-50 icon-youtube-play">
-									<img src="images/oponent4.jpg">
-								</li>
+								{% for item in program_6_data %}	
+									<li class="col-50 icon-youtube-play">
+										<a href="{% url 'article' item.id %}">
+											{% if item.video %}
+												{% video item.video as my_video %}
+													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+														<img src="{{ im.url }}">
+													{% endthumbnail %}
+												{% endvideo %}
+											{% elif item.img %}
+												{% thumbnail item.img  '280x180' crop='center' as im %}
+													<img src="{{im.url}}">
+												{% endthumbnail %}
+											{% endif %}
+										</a>
+									</li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
@@ -325,22 +336,24 @@
 				<div class="container">
 					<h2 class="heading">Ամենադիտվածը</h2>
 					<ul class="list-inline">
-						<li class="col-25 icon-youtube-play">
-							<img src="images/slide2.jpg">
-							<h2 class="program-name">Հայլուր 19.07.2017</h2>
-						</li>
-						<li class="col-25 icon-youtube-play">
-							<img src="images/news2.jpg">
-							<h2 class="program-name">Հայլուր 18.07.2017</h2>
-						</li>
-						<li class="col-25 icon-youtube-play">
-							<img src="images/news3.jpg">
-							<h2 class="program-name">Նաիրյան Արկածներ մաս 1 - 1 </h2>
-						</li>
-						<li class="col-25 icon-youtube-play">
-							<img src="images/news4.jpg">
-							<h2 class="program-name">Անտիպատմություն մաս 1 - 17</h2>
-						</li>
+						{% for item in most_viewed_data %}					
+							<li class="col-25 icon-youtube-play">
+								<a href="{% url 'article' item.id %}">
+									{% if item.video %}
+										{% video item.video as my_video %}
+											{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+												<img src="{{ im.url }}">
+											{% endthumbnail %}
+										{% endvideo %}
+									{% elif item.img %}
+										{% thumbnail item.img  '280x180' crop='center' as im %}
+											<img src="{{im.url}}">
+										{% endthumbnail %}
+									{% endif %}
+									<h2 class="program-name">{{ item.title }}</h2>
+								</a>
+							</li>
+						{% endfor %}
 					</ul>
 				</div>
 			</div>

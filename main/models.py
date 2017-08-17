@@ -53,9 +53,8 @@ from django.utils.html import format_html
 
 
 class Content(models.Model):
-    title = models.CharField(u'Վերնագիր', max_length=255)
+    title = models.CharField(max_length=255)
     desc = models.TextField(blank=True, null=True)
-    # myfield = forms.CharFie(widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
     img = models.ImageField(upload_to=get_file_path_img, default='', blank=True, null=True)
     category = models.ManyToManyField('Category', blank=True, null=True)
     general_slider = models.BooleanField(
@@ -64,7 +63,7 @@ class Content(models.Model):
     video = EmbedVideoField(blank=True)  # same like models.URLField()
     create_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     publish_date = models.DateTimeField(default=datetime.now(), blank=True, null=True)
-    hit_count = models.IntegerField(blank=True, null=True)
+    hit_count = models.IntegerField(blank=True, null=True, default=0)
 
     def image_tag(self):
         if self.img:
@@ -75,8 +74,6 @@ class Content(models.Model):
     def video_tag(self):
         if self.video:
             return format_html(('<iframe width="150" height="100" src="%s?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>' % self.video).replace("watch?v=", "embed/"))
-            # return '<iframe width="100" height="70" src="%s" frameborder="0"
-            # allowfullscreen></iframe>' % self.video
         else:
             return ''
 
@@ -84,5 +81,13 @@ class Content(models.Model):
 
     class Meta:
         ordering = ["-id"]
-        verbose_name = "Նյութ"
-        verbose_name_plural = "Նյութեր"
+        verbose_name = "Article"
+        verbose_name_plural = "Articles"
+
+
+class Program(models.Model):
+    title = models.CharField(max_length=255)
+    date = models.DateTimeField(default=datetime.now(), blank=True, null=True)
+
+    class Meta:
+        ordering = ["-date"]

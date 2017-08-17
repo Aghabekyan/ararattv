@@ -189,7 +189,9 @@ body {
 
 a {
   color: #212121;
-  text-decoration: none; }
+  text-decoration: none;
+  display: inline-block;
+  padding: 0; }
 
 .left {
   float: left; }
@@ -660,7 +662,7 @@ img {
     height: 190px;
     margin-right: 32px;
     display: inline-block; }
-    #haylur_slider li img {
+    #haylur_slider li a, #haylur_slider li img {
       width: 100%;
       height: 100%; }
 
@@ -1124,7 +1126,8 @@ header {
       height: 413px;
       overflow: auto; }
       .slider-newsfeed .newsfeed ul li {
-        padding: 10px 0 10px 10px;
+        width: 100%;
+        padding: 0;
         margin: 3px 0;
         cursor: pointer;
         transition: all 0.3s;
@@ -1147,9 +1150,14 @@ header {
             color: #212121; }
             .slider-newsfeed .newsfeed ul li:hover p .date {
               color: #004964; }
-        .slider-newsfeed .newsfeed ul li > * {
+        .slider-newsfeed .newsfeed ul li a {
+          padding: 10px 0 10px 10px;
           display: inline-block;
-          vertical-align: top; }
+          width: 100%;
+          box-sizing: border-box; }
+          .slider-newsfeed .newsfeed ul li a > * {
+            display: inline-block;
+            vertical-align: top; }
         .slider-newsfeed .newsfeed ul li img {
           height: 55px; }
         .slider-newsfeed .newsfeed ul li p {
@@ -1366,7 +1374,7 @@ header {
             box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24); }
           .programs .programs-categories .container > div ul li:nth-child(2n+1) {
             margin-right: 15px; }
-          .programs .programs-categories .container > div ul li img {
+          .programs .programs-categories .container > div ul li a, .programs .programs-categories .container > div ul li img {
             width: 100%;
             height: 100%; }
 

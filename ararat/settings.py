@@ -45,8 +45,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'easy_thumbnails',
-    # 'sorl.thumbnail',
+    # 'easy_thumbnails',
+    'sorl.thumbnail',
     'admin_reorder',
     'embed_video',
     'main',
@@ -93,36 +93,35 @@ TEMPLATES = [
         },
     },
 ]
-
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-#         'LOCATION': '/var/tmp/django_cache',
-#     }
-# }
-THUMBNAIL_QUALITY = 100
-THUMBNAIL_PROGRESSIVE = 100
-THUMBNAIL_MEDIA_ROOT = MEDIA_ROOT + '/thumb/'
-THUMBNAIL_MEDIA_URL = MEDIA_URL + '/thumb/'
+THUMBNAIL_CACHE_TIMEOUT = 1
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+    }
+}
+# THUMBNAIL_QUALITY = 100
+# THUMBNAIL_PROGRESSIVE = 100
+# THUMBNAIL_MEDIA_ROOT = MEDIA_ROOT + '/thumb/'
+# THUMBNAIL_MEDIA_URL = MEDIA_URL + '/thumb/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'Asia/Yerevan'
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
 
-# MIDDLEWARE_CLASSES += (
-#     'django.middleware.cache.UpdateCacheMiddleware',
-#     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.cache.FetchFromCacheMiddleware',
-# )
+MIDDLEWARE_CLASSES += (
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
+)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 

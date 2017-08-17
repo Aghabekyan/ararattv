@@ -15,7 +15,9 @@
               <li class="col-25">
                  <a href="{% url 'article' item.id %}">
                   <div class="icon-youtube-play">
-                    <img src="{% thumbnail item.img 240x150 crop='smart' %}">
+                    {% thumbnail item.img  '240x150' crop="center" as im %}
+                      <img src="{{im.url}}">
+                    {% endthumbnail %}
                   </div>
                   <h3><span class="date">{{item.publish_date|date:"d/m/y H:i:s"}}</span>{{item.title|truncatechars:50}}</h3>
                 </a>

@@ -59,4 +59,56 @@ $(function() {
 		}
 	});
 
+
+	$.simpleWeather({
+	location: 'yerevan',
+	woeid: '',
+	unit: 'c',
+	success: function(weather) {
+	  console.log(weather);
+	},
+	error: function(error) {
+	  console.log('<p>'+error+'</p>');
+	}
+	});
+
+
+
+	/* setCookie */
+	if ($('#make-count').length) {
+		var post_id = $('#make-count').data('id');
+		if (typeof getCookie(post_id) === "undefined" ) {
+			var url = htmDIR + '?hitcounter';
+			$.post(url, { 
+				id: post_id
+			});
+			setCookie(post_id, 'default', 3);
+		}
+	}
+
+
+
+
+	/* set/get cookie interface */	
+	function setCookie(c_name,value,exhours) {
+		var exdate=new Date();
+		exdate.setHours(exdate.getHours() + exhours);
+		var c_value=escape(value) + ((exhours==null) ? "" : "; expires="+exdate.toUTCString());
+		document.cookie=c_name + "=" + c_value;
+	}
+	function getCookie(c_name){
+		var i,x,y,ARRcookies=document.cookie.split(";");
+		for (i=0;i<ARRcookies.length;i++){
+			x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+			y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+			x=x.replace(/^\s+|\s+$/g,"");
+			if (x==c_name){
+				return unescape(y);
+			}
+		}
+	}
+
+
+
+
 })

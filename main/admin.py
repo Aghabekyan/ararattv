@@ -1,9 +1,15 @@
 from django.contrib import admin
-from main.models import Category, Content, ContentImage
+from main.models import Category, Content, ContentImage, Program
+from django import forms
+from django.forms import SelectMultiple, CheckboxSelectMultiple
 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
+
+
+class ProgramAdmin(admin.ModelAdmin):
+    list_display = ['title', 'date']
 
 
 class PropertyImageInline(admin.TabularInline):
@@ -15,15 +21,15 @@ class PropertyImageInline(admin.TabularInline):
 from django.forms import ModelForm, Textarea
 
 
-# class ContentForm(ModelForm):
-#     pass
+class ContentForm(ModelForm):
+    title = forms.CharField(widget=forms.Textarea(attrs={'cols': 100, 'rows': 2}))
 
-#     class Meta:
-#         model = Content
-#         fields = ('img', 'title', 'desc')
-#         widgets = {
-#             'desc': Textarea(attrs={'cols': 80, 'class': 'ssssssss'}),
-#         }
+    class Meta:
+        model = Content
+        # fields = ('img', 'title', 'desc')
+        # widgets = {
+        #     'desc': Textarea(attrs={'cols': 80, 'class': 'ssssssss'}),
+        # }
 from django.forms import TextInput, Textarea
 from django.db import models
 
@@ -32,14 +38,15 @@ class ContentAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '100'})},
         models.TextField: {'widget': Textarea(attrs={'rows': 20, 'cols': 80})},
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
 
     list_display = ['title', 'image_tag', 'video_tag']
     inlines = [PropertyImageInline, ]
     fields = ('title', 'desc', 'img', 'image_tag',
-              'video', 'category', 'general_slider', 'news_line')
+              'video', 'category', 'general_slider', 'news_line', 'publish_date', 'hit_count')
     readonly_fields = ('image_tag',)
-    # form = ContentForm
+    form = ContentForm
 
     def get_queryset(self, request):
         qs = super(ContentAdmin, self).get_queryset(request)
@@ -53,6 +60,7 @@ class ContentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Program, ProgramAdmin)
 admin.site.register(Content, ContentAdmin)
 # Register your models here.
 

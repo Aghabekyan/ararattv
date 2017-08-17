@@ -6,14 +6,18 @@
 {% block title %} | {{article.title|safe}}{% endblock %}
 
 {% block main %}
-
+	<div id="make-count" data-id="{{article.id}}"></div>
 	<div class="content">
 		<div class="container last-videos">
 			<div class="col-70">
 				<h3><span class="date">29 Հուլիս, 2017</span>{{article.title|safe}}</h3>
-				{% video article.video query="rel=0&wmode=transparent" as my_video %}
-					<iframe  src="{{ my_video.url }}" frameborder="0" allowfullscreen></iframe>
-				{% endvideo %}
+				{% if article.video %}
+					{% video article.video query="rel=0&wmode=transparent" as my_video %}
+						<iframe  src="{{ my_video.url }}" frameborder="0" allowfullscreen></iframe>
+					{% endvideo %}
+				{% elif article.img %}
+			 		<img src="{{ article.img.url }}">
+				{% endif %}
 				<div class="clearfix">
 					<div class="right social-icons">
 						<a class="icon-facebook" href="#"></a>
