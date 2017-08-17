@@ -138,18 +138,6 @@ $(function() {
 			    },
 			    error: function () {}
 			});
-
-
-			// $.post(url, 
-			// 		{ 
-			// 			id: post_id
-			// 		},
-			// 	    beforeSend: function(xhr, settings) {
-			// 	        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-			// 	            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-			// 	        }
-			// 	    }
-		 //    );
 			setCookie(post_id, 'default', 3);
 		}
 	}
