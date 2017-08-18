@@ -67,7 +67,7 @@ def index(request):
     program_1_data = get_program(1, 4)
     program_2_data = get_program(2, 4)
     program_3_data = get_program(3, 4)
-    program_4_data = get_program(4, 16)
+    program_4_data = get_program(4, 4)
     program_5_data = get_program(5, 4)
     program_6_data = get_program(6, 4)
     most_viewed_data = get_most_viewed(4)
@@ -103,7 +103,7 @@ def article(request, article_id):
     return response
 
 
-@cache_page(10)
+@cache_page(1)
 def program(request, program_id):
     try:
         category_obj = Category.objects.get(id=program_id)
@@ -111,7 +111,7 @@ def program(request, program_id):
         return redirect('/')
     categories = Content.objects.filter(category=category_obj).order_by('-id')
 
-    paginator = Paginator(categories, 10) # Show 25 contacts per page
+    paginator = Paginator(categories, 20) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
         data = paginator.page(page)

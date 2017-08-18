@@ -1,5 +1,7 @@
 {% extends "main/base.html" %}
+{% load staticfiles %}
 {% load thumbnail %}
+{% load embed_video_tags %}
 
 {% block title %}Category{% endblock %}
 
@@ -15,9 +17,17 @@
               <li class="col-25">
                  <a href="{% url 'article' item.id %}">
                   <div class="icon-youtube-play">
-                    {% thumbnail item.img  '240x150' crop="center" as im %}
-                      <img src="{{im.url}}">
-                    {% endthumbnail %}
+                    {% if item.video %}
+                      {% video item.video as my_video %}
+                        {% thumbnail my_video.thumbnail  '240x150' crop='center' as im %}
+                          <img src="{{im.url}}">
+                        {% endthumbnail %}
+                      {% endvideo %}
+                    {% elif item.img %}
+                        {% thumbnail item.img  '240x150' crop='center' as im %}
+                          <img src="{{im.url}}">
+                        {% endthumbnail %}
+                    {% endif %}
                   </div>
                   <h3><span class="date">{{item.publish_date|date:"d/m/y H:i:s"}}</span>{{item.title|truncatechars:50}}</h3>
                 </a>
@@ -37,7 +47,7 @@
 
 
 
-
+<!-- 
 
 {% if data.has_other_pages %}
   <ul class="pagination list-inline">
@@ -63,7 +73,7 @@
 
 
 
-
+ -->
 
 
 

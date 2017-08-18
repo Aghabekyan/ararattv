@@ -56,13 +56,14 @@ class Content(models.Model):
     title = models.CharField(max_length=255)
     desc = models.TextField(blank=True, null=True)
     img = models.ImageField(upload_to=get_file_path_img, default='', blank=True, null=True)
-    category = models.ManyToManyField('Category', blank=True, null=True)
+    category = models.ManyToManyField('Category', blank=True, null=True, db_index=True)
     general_slider = models.BooleanField(
         default=False, verbose_name=u'General Slider', db_index=True)
     news_line = models.BooleanField(default=False, verbose_name=u'News Line', db_index=True)
     video = EmbedVideoField(blank=True)  # same like models.URLField()
     create_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    publish_date = models.DateTimeField(default=datetime.now(), blank=True, null=True)
+    publish_date = models.DateTimeField(
+        default=datetime.now(), blank=True, null=True, db_index=True)
     hit_count = models.IntegerField(blank=True, null=True, default=0)
 
     def image_tag(self):
