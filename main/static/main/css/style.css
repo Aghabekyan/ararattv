@@ -381,6 +381,9 @@ img {
     .currency ul li:nth-child(4) {
       animation-delay: 12s; }
 
+.slider-newsfeed .fotorama {
+  height: 482px; }
+
 .slider {
   padding-right: 26px; }
   .slider ul {
@@ -578,90 +581,109 @@ img {
          margin-right: 12px;
        }*/ }
 
-.programs.haylur-slider .caroufredsel_wrapper {
-  width: 100% !important; }
-.programs.haylur-slider .list_carousel {
-  padding: 0 55px 0 65px;
-  position: relative; }
-.programs.haylur-slider .container {
-  max-width: 1500px;
-  margin-top: 30px;
-  position: relative; }
-.programs.haylur-slider .heading {
-  margin-bottom: 30px; }
-.programs.haylur-slider .next,
-.programs.haylur-slider .prev {
-  position: absolute;
-  font-size: 27px;
-  text-align: center;
-  top: 85px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #d3d3db;
-  color: #e65100;
-  transition: all 0.3s;
-  -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
-  -o-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3); }
-  .programs.haylur-slider .next:hover,
-  .programs.haylur-slider .prev:hover {
-    -webkit-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
-    -o-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
-    box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24); }
-  .programs.haylur-slider .next:active,
-  .programs.haylur-slider .prev:active {
-    -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
-    -o-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24); }
-.programs.haylur-slider .prev {
-  left: 5px; }
-.programs.haylur-slider .next {
-  right: 5px; }
-.programs.haylur-slider .pager {
-  width: 100%;
-  margin-top: 10px;
-  text-align: center; }
-  .programs.haylur-slider .pager a {
-    width: 8px;
-    height: 8px;
-    font-size: 0;
-    display: inline-block;
-    margin: 0 3px;
-    color: transparent;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+.programs.haylur-slider {
+  padding: 0px 0 30px;
+  margin-bottom: 100px;
+  border: 1px solid #e0e0e0;
+  background-color: #f5f5fd;
+  background-image: url(../images/poly-bg.png); }
+  .programs.haylur-slider .caroufredsel_wrapper {
+    width: 100% !important; }
+  .programs.haylur-slider .list_carousel {
+    padding: 0 0px 0 0px;
+    position: relative; }
+  .programs.haylur-slider .container {
+    /*max-width: 1500px;*/
+    margin-top: 30px;
+    position: relative; }
+  .programs.haylur-slider .heading {
+    margin-bottom: 30px; }
+  .programs.haylur-slider .next,
+  .programs.haylur-slider .prev {
+    position: absolute;
+    font-size: 27px;
+    text-align: center;
+    top: 80px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
+    background-color: #d3d3db;
+    color: #e65100;
+    transition: all 0.3s;
     -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
     -o-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3); }
-    .programs.haylur-slider .pager a:hover {
+    .programs.haylur-slider .next:before,
+    .programs.haylur-slider .prev:before {
+      width: 100%;
+      display: inline-block;
+      line-height: 0.7;
+      padding: 6px 0;
+      box-sizing: border-box; }
+    .programs.haylur-slider .next:hover,
+    .programs.haylur-slider .prev:hover {
+      background-color: #e4e4ec;
       -webkit-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
       -moz-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
       -o-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
       box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24); }
-    .programs.haylur-slider .pager a:active {
+    .programs.haylur-slider .next:active,
+    .programs.haylur-slider .prev:active {
+      background-color: #f5f5fd;
       -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
       -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
       -o-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
       box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24); }
-    .programs.haylur-slider .pager a.selected {
-      background-color: #e65100;
-      border-color: #e65100; }
-    .programs.haylur-slider .pager a span {
-      font-size: 0; }
+  .programs.haylur-slider .prev {
+    left: 5px; }
+    .programs.haylur-slider .prev:before {
+      padding-right: 1px; }
+  .programs.haylur-slider .next {
+    right: 5px; }
+    .programs.haylur-slider .next:before {
+      padding-left: 3px; }
+  .programs.haylur-slider .pager {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center; }
+    .programs.haylur-slider .pager a {
+      width: 8px;
+      height: 8px;
+      font-size: 0;
+      display: inline-block;
+      margin: 0 3px;
+      color: transparent;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 50%;
+      -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+      -o-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3); }
+      .programs.haylur-slider .pager a:hover {
+        -webkit-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
+        -moz-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
+        -o-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
+        box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24); }
+      .programs.haylur-slider .pager a:active {
+        -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
+        -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
+        -o-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24); }
+      .programs.haylur-slider .pager a.selected {
+        background-color: #e65100;
+        border-color: #e65100; }
+      .programs.haylur-slider .pager a span {
+        font-size: 0; }
 
 #haylur_slider {
   width: 100%; }
   #haylur_slider li {
-    width: 315px;
-    height: 190px;
-    margin-right: 32px;
-    display: inline-block; }
+    width: 293px;
+    height: 180px;
+    display: inline-block;
+    margin-right: 10px; }
     #haylur_slider li a, #haylur_slider li img {
       width: 100%;
       height: 100%; }
@@ -1169,10 +1191,7 @@ header {
             color: #226b86; }
 
 .watch-live {
-  -webkit-box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.24);
-  -o-box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.24);
-  box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.24);
+  border: 1px solid #e0e0e0;
   padding: 30px 0 40px;
   position: relative;
   background-color: #f5f5fd;
@@ -1314,10 +1333,7 @@ header {
   .programs .programs-categories {
     background-color: #f5f5fd;
     background-image: url(../images/poly-bg.png);
-    -webkit-box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.24);
-    -o-box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.24);
-    box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.24);
+    border: 1px solid #e0e0e0;
     /*&:after {
     	content: '';
     	display: inline-block;
@@ -1377,6 +1393,26 @@ header {
           .programs .programs-categories .container > div ul li a, .programs .programs-categories .container > div ul li img {
             width: 100%;
             height: 100%; }
+          .programs .programs-categories .container > div ul li a {
+            position: relative; }
+            .programs .programs-categories .container > div ul li a .title-date {
+              width: 100%;
+              padding: 12px 10px 10px;
+              line-height: 0.7;
+              box-sizing: border-box;
+              background-color: rgba(255, 255, 255, 0.8);
+              position: absolute;
+              top: auto;
+              bottom: 0;
+              text-align: right;
+              font-size: 14px; }
+              .programs .programs-categories .container > div ul li a .title-date span {
+                display: inline-block;
+                margin-right: 10px; }
+              .programs .programs-categories .container > div ul li a .title-date .title {
+                color: #004964; }
+              .programs .programs-categories .container > div ul li a .title-date .date {
+                color: #555; }
 
 footer {
   background-color: #1e1e1e;
@@ -1475,7 +1511,7 @@ footer {
       text-align: center;
       letter-spacing: -0.3em;
       margin-bottom: 20px; }
-      .programs-categories .all-list-programs .container .pagination button {
+      .programs-categories .all-list-programs .container .pagination a {
         font-size: 15px;
         cursor: pointer;
         letter-spacing: normal;
@@ -1487,24 +1523,24 @@ footer {
         height: 30px;
         margin: 0;
         outline: none !important;
-        border: none;
+        border-width: 1px;
         border-style: solid;
         border-color: #e0e0e0; }
-        .programs-categories .all-list-programs .container .pagination button:hover {
+        .programs-categories .all-list-programs .container .pagination a:hover {
           -webkit-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
           -moz-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
           -o-box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
           box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.24);
           position: relative;
           z-index: 1; }
-        .programs-categories .all-list-programs .container .pagination button.active {
+        .programs-categories .all-list-programs .container .pagination a.active {
           color: #e65100; }
-        .programs-categories .all-list-programs .container .pagination button:active {
+        .programs-categories .all-list-programs .container .pagination a:active {
           -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
           -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
           -o-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
           box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24); }
-        .programs-categories .all-list-programs .container .pagination button[class*="icon"] {
+        .programs-categories .all-list-programs .container .pagination a[class*="icon"] {
           margin: 0 7px; }
       .programs-categories .all-list-programs .container .pagination li:not(:nth-child(2)) button {
         border-width: 1px 1px 1px 0; }
