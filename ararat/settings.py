@@ -106,7 +106,7 @@ TEMPLATES = [
         },
     },
 ]
-# THUMBNAIL_CACHE_TIMEOUT = 10000
+THUMBNAIL_CACHE_TIMEOUT = 10000
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
