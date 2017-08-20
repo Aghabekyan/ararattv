@@ -83,7 +83,12 @@ class Content(models.Model):
     image_tag.allow_tags = True
 
     def save(self, *args, **kwargs):
-        cache.clear()
+        # cache.clear()
+        print '----------------------------------------------------'
+        # print cache
+        # cache.delete('/post/%s/' % post.id)
+        cache.delete('article:13184')
+        # cache.set('article:13184', None, 0)
         super(Content, self).save(*args, **kwargs)
 
     class Meta:

@@ -81,6 +81,19 @@ DATABASES = {
     }
 }
 
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'ararat',
+#         'USER': 'root',
+#         'PASSWORD': 'fanatik',
+#         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+#         'PORT': '5432',
+#     }
+# }
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -93,13 +106,19 @@ TEMPLATES = [
         },
     },
 ]
-THUMBNAIL_CACHE_TIMEOUT = 1
+# THUMBNAIL_CACHE_TIMEOUT = 10000
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'LOCATION': '/var/tmp/django_cache',
     }
 }
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': '127.0.0.1:11211',
+#     }
+# }
 # THUMBNAIL_QUALITY = 100
 # THUMBNAIL_PROGRESSIVE = 100
 # THUMBNAIL_MEDIA_ROOT = MEDIA_ROOT + '/thumb/'
