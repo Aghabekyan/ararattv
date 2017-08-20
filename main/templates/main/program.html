@@ -6,8 +6,6 @@
 {% block title %}Category{% endblock %}
 
 {% block main %}
-
-
     <div class="content">
       <div class="all-list-programs">
         <div class="container">
@@ -32,18 +30,47 @@
                   <h3><span class="date">{{item.publish_date|date:"d/m/y H:i:s"}}</span>{{item.title|truncatechars:50}}</h3>
                 </a>
               </li>
-            {% endfor %}           
+            {% endfor %} 
           </ul>
-          <ul class="pagination list-inline">
-            <li><button class="icon-angle-left"></button></li>
-            <li><button class="active">1</button></li>
-            <li><button>2</button></li>
-            <li><button>3</button></li>
-            <li><button>4</button></li>
-            <li><button>5</button></li>
 
-            <li><button class="icon-angle-right"></button></li>
-          </ul>
+
+
+
+{% if data.has_other_pages %}          
+  <ul class="pagination list-inline">
+    {% if data.has_previous %}
+        <li><a href="?page={{ data.previous_page_number }}" class="icon-angle-left"></a></li>
+    {% else %}
+        <!-- disabled button -->
+        <li><a class="icon-angle-left"></a></li>
+    {% endif %}
+
+    {% for i in data.paginator.page_range %}
+      {% if data.number == i %}
+        <li><a class="active">{{ i }}</a></li>
+      {% else %}
+        <li><a href="?page={{ i }}" >{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+    {% if data.has_next %}
+       <li><a href="?page={{ data.next_page_number }}" class="icon-angle-right"></a></li>
+    {% else %}
+            <!-- disabled button -->
+       <li><a class="icon-angle-right"></a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
 
 
 
@@ -70,17 +97,12 @@
     {% endif %}
   </ul>
 {% endif %}
-
-
-
  -->
 
 
 
 
 
-        </div>
-      </div>
-    </div>
+
 
 {% endblock %}

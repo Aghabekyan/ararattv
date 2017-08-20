@@ -7,6 +7,8 @@ from embed_video.fields import EmbedVideoField
 import uuid
 import os
 import time
+
+from django.core.cache import cache
 # Create your models here.
 
 
@@ -79,6 +81,10 @@ class Content(models.Model):
             return ''
 
     image_tag.allow_tags = True
+
+    def save(self, *args, **kwargs):
+        cache.clear()
+        super(Content, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ["-id"]

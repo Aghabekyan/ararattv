@@ -6,20 +6,20 @@
 {% block title %} | Գլխավոր{% endblock %}
 
 {% block main %}
-		<div class="content">
-			<div class="container slider-newsfeed">
-				<div class="slider col-60">
-					<div class="fotorama"
-					     data-loop="true"
-					     data-width="100%"
-					     data-autoplay="false"
-					     data-stopautoplayontouch="false"
-					     data-arrows="true"
-					     data-click="true"
-					     data-swipe="true"
-					     data-transition="slide">
-						{% for item in general_slider_data %}						
-							 <div data-img="
+<div class="content">
+	<div class="container slider-newsfeed">
+		<div class="slider col-60">
+			<div class="fotorama"
+			     data-loop="true"
+			     data-width="100%"
+			     data-autoplay="false"
+			     data-stopautoplayontouch="false"
+			     data-arrows="true"
+			     data-click="true"
+			     data-swipe="true"
+			     data-transition="slide">
+				{% for item in general_slider_data %}
+				<div data-img="
 								{% if item.video %}
 									{% video item.video as my_video %}
 										{% thumbnail my_video.thumbnail  '600x420' crop='center' as im %}
@@ -30,314 +30,182 @@
 										{% thumbnail item.img  '600x420' crop='center' as im %}
 										  {{ im.url }}
 										{% endthumbnail %}
-								{% endif %}
-							 ">
-							    <div class="description">
-								     <p>{{item.title}}</p>
-								</div>
-							 </div>
-						{% endfor %}
-					</div>
+								{% endif %}">
+					<a href="{% url 'article' item.id %}" class="description">
+						<h3>{{item.title}}</h3>
+					</a>
 				</div>
-				<div class="newsfeed col-40">
-					<h2 class="heading">Լրահոս</h2>
-					<ul>
-						{% for item in news_line_data %}
-							<li>
-								<a href="{% url 'article' item.id %}">
-									{% if item.video %}
-										{% video item.video as my_video %}
-											<img src="{{my_video.thumbnail}}">
-										{% endvideo %}
-									{% elif item.img %}
-										{% thumbnail item.img  '103x55' crop='center' as im %}
-											<img src="{{im.url}}">
+				{% endfor %}
+			</div>
+		</div>
+		<div class="newsfeed col-40">
+			<h2 class="heading">Լրահոս</h2>
+			<ul>
+				{% for item in news_line_data %}
+					<li>
+						<a href="{% url 'article' item.id %}">
+							{% if item.video %}
+								{% video item.video as my_video %}
+									{% thumbnail my_video.thumbnail  '103x55' crop='center' as im %}
+										<img src="{{im.url}}">
+									{% endthumbnail %}
+								{% endvideo %}
+							{% elif item.img %}
+								{% thumbnail item.img  '103x55' crop='center' as im %}
+									<img src="{{im.url}}">
+								{% endthumbnail %}
+							{% endif %}
+							<p><span class="date">{{item.publish_date|date:"j.m.Y H:i" }}</span>
+								{{item.title}}
+							</p>
+						</a>
+					</li>
+				{% endfor %}	
+			</ul>
+		</div>
+	</div>
+	<div class="programs haylur-slider">
+		<div class="container">
+			<h2 class="heading">ՀԱՅԼՈՒՐ Լրատվական</h2>
+			<div class="list_carousel">
+				<ul id="haylur_slider">
+					{% for item in haylur_data %}
+					<li>
+						<a href="{% url 'article' item.id %}">
+								{% if item.video %}
+									{% video item.video as my_video %}
+										{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+											<img src="{{ im.url }}">
 										{% endthumbnail %}
-									{% endif %}
-									<p><span class="date">{{item.publish_date|date:"j.m.Y H:i" }}</span>
-										{{item.title}}
-									</p>
-								</a>
-							</li>
-						{% endfor %}						
-					</ul>
-				</div>
-			</div>
-			<div class="watch-live">
-				<div class="container">
-					<h2 class="heading col-100">Հիմա եթերում</h2>
-					<div class=" video-live col-50 icon-youtube-play">
-						<img src="images/slide2.jpg">
-					</div>
-					<div class="tv-program col-50">
-						<h3>Ծրագիր</h3>
-						<h5 class="today">Այսօր, 22.07.2017 Շաբաթ</h5>
-						<ul>						
-							{% for item in program_date_data %}
-								<li>
-									<span class="time">{{item.date|date:"H:i" }}</span>
-									<span class="program-name">{{item.title}}</span>
-								</li>
-							{% endfor %}	
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="programs haylur-slider">
-				<div class="container">
-					<h2 class="heading">ՀԱՅԼՈՒՐ Լրատվական</h2>
-					<div class="list_carousel">
-						<ul id="haylur_slider">
-							<li><img src="images/news3.jpg"/></li>
-						  	<li><img src="images/news2.jpg"/></li>
-						  	<li><img src="images/news3.jpg"/></li>
-						  	<li><img src="images/news2.jpg"/></li>
-						  	<li><img src="images/news3.jpg"/></li>
-						  	<li><img src="images/news2.jpg"/></li>
-						  	<li><img src="images/news3.jpg"/></li>
-						  	<li><img src="images/news2.jpg"/></li>
-						  	<li><img src="images/news3.jpg"/></li>
-						  	<li><img src="images/news2.jpg"/></li>
-						  	<li><img src="images/news3.jpg"/></li>
-						  	<li><img src="images/news2.jpg"/></li>
-						  	<li><img src="images/news3.jpg"/></li>
-						  	<li><img src="images/news2.jpg"/></li>
-						  	<li><img src="images/news3.jpg"/></li>
-						  	<li><img src="images/news2.jpg"/></li>
-						</ul>
-						<div class="clearfix"></div>
-						<a id="prev2" class="prev icon-angle-left" href="#"></a> <a id="next2" class="next icon-angle-right" href="#"></a>
-						<div id="pager2" class="pager"></div>
-					</div>
-				</div>
-			</div>
-			<div class="programs">
-				<h2 class="container heading">Հաղորդումներ</h2>
-				<ul class="container programs-list">
-					<li class="program col-25">
-						<div class="main-img">
-							<img src="images/slide1.jpg">
-							<div class="description">
-								<h3>Հայլուր</h3>
-								<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
-							</div>
-						</div>
-						<h4>Հայլուր <span>Ամեն օր, 21:00</span></h4>
+									{% endvideo %}
+								{% elif item.img %}
+									{% thumbnail item.img  '280x180' crop='center' as im %}
+										<img src="{{im.url}}">
+									{% endthumbnail %}
+								{% endif %}
+						</a>
 					</li>
-					<li class="program col-25">
-						<div class="main-img">
-							<img src="images/shtapognutyun1.jpg">
-							<div class="description">
-								<h3>Շտապ Օգնություն</h3>
-								<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
-							</div>
-						</div>
-						<h4>Շտապ Օգնություն <span>Երկ - Ուրբ, 19:00</span></h4>
-					</li>
-					<li class="program col-25">
-						<div class="main-img">
-							<img src="images/nairyan1.jpg">
-							<div class="description">
-								<h3>Նաիրյան Արկածներ</h3>
-								<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
-							</div>
-						</div>
-						<h4>Նաիրյան Արկածներ <span>Կրկ, 22:00</span></h4>
-					</li>
-					<li class="program col-25">
-						<div class="main-img">
-							<img src="images/antipatmutyun1.jpg">
-							<div class="description">
-								<h3>Հայլուր</h3>
-								<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
-							</div>
-						</div>
-						<h4>Անտիպատմություն <span>Ամեն օր, 21:00</span></h4>
-					</li>
-					<li class="program col-25">
-						<div class="main-img">
-							<img src="images/oponent1.jpg">
-							<div class="description">
-								<h3>Նաիրյան Արկածներ</h3>
-								<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
-							</div>
-						</div>
-						<h4>Օպոնենտ <span>Կրկ, 22:00</span></h4>
-					</li>
-					<li class="program col-25">
-						<div class="main-img">
-							<img src="images/tohmacar1.jpg">
-							<div class="description">
-								<h3>Հայլուր</h3>
-								<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
-							</div>
-						</div>
-						<h4>Տոհմածառ <span>Ամեն օր, 21:00</span></h4>
-					</li>
-					<li class="program col-25">
-						<div class="main-img">
-							<img src="images/slide2.jpg">
-							<div class="description">
-								<h3>Շտապ Օգնություն</h3>
-								<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
-							</div>
-						</div>
-						<h4>Շտապ Օգնություն <span>Երկ - Ուրբ, 19:00</span></h4>
-					</li>
-					<li class="program col-25">
-						<div class="main-img">
-							<img src="images/slide3.jpg">
-							<div class="description">
-								<h3>Հայլուր</h3>
-								<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
-							</div>
-						</div>
-						<h4>Հայլուր <span>Ամեն օր, 21:00</span></h4>
-					</li>
+					{% endfor %}
 				</ul>
-				<div class="programs-categories">
-					<div class="container">
-						<div class="col-50">
-							<h3>Հայլուր<span>Ամեն օր, 21:00</span></h3>
-							<ul>
-								{% for item in program_1_data %}	
-									<li class="col-50 icon-youtube-play">
-										<a href="{% url 'article' item.id %}">
-											{% if item.video %}
-												{% video item.video as my_video %}
-													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
-														<img src="{{ im.url }}">
-													{% endthumbnail %}
-												{% endvideo %}
-											{% elif item.img %}
-												{% thumbnail item.img  '280x180' crop='center' as im %}
-													<img src="{{im.url}}">
-												{% endthumbnail %}
-											{% endif %}
-										</a>
-									</li>
-								{% endfor %}
-							</ul>
-						</div>
-						<div class="col-50">
-							<h3>Նաիրյան Արկածներ<span>Կրկ, 22:00</span></h3>
-							<ul>
-								{% for item in program_2_data %}	
-									<li class="col-50 icon-youtube-play">
-										<a href="{% url 'article' item.id %}">
-											{% if item.video %}
-												{% video item.video as my_video %}
-													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
-														<img src="{{ im.url }}">
-													{% endthumbnail %}
-												{% endvideo %}
-											{% elif item.img %}
-												{% thumbnail item.img  '280x180' crop='center' as im %}
-													<img src="{{im.url}}">
-												{% endthumbnail %}
-											{% endif %}
-										</a>
-									</li>
-								{% endfor %}
-							</ul>
-						</div>
-						<div class="col-50">
-							<h3>Շտապ Օգնություն<span>Երկ - Ուրբ, 19:00</span></h3>
-							<ul>
-								{% for item in program_3_data %}	
-									<li class="col-50 icon-youtube-play">
-										<a href="{% url 'article' item.id %}">
-											{% if item.video %}
-												{% video item.video as my_video %}
-													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
-														<img src="{{ im.url }}">
-													{% endthumbnail %}
-												{% endvideo %}
-											{% elif item.img %}
-												{% thumbnail item.img  '280x180' crop='center' as im %}
-													<img src="{{im.url}}">
-												{% endthumbnail %}
-											{% endif %}
-										</a>
-									</li>
-								{% endfor %}
-							</ul>
-						</div>
-						<div class="col-50">
-							<h3>Անտիպատմություն<span>Ամեն օր, 17:00</span></h3>
-							<ul>
-								{% for item in program_4_data %}	
-									<li class="col-50 icon-youtube-play">
-										<a href="{% url 'article' item.id %}">
-											{% if item.video %}
-												{% video item.video as my_video %}
-													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
-														<img src="{{ im.url }}">
-													{% endthumbnail %}
-												{% endvideo %}
-											{% elif item.img %}
-												{% thumbnail item.img  '280x180' crop='center' as im %}
-													<img src="{{im.url}}">
-												{% endthumbnail %}
-											{% endif %}
-										</a>
-									</li>
-								{% endfor %}
-							</ul>
-						</div>
-						<div class="col-50">
-							<h3>Տոհմածառ<span>Երք 18:00</span></h3>
-							<ul>
-								{% for item in program_5_data %}	
-									<li class="col-50 icon-youtube-play">
-										<a href="{% url 'article' item.id %}">
-											{% if item.video %}
-												{% video item.video as my_video %}
-													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
-														<img src="{{ im.url }}">
-													{% endthumbnail %}
-												{% endvideo %}
-											{% elif item.img %}
-												{% thumbnail item.img  '280x180' crop='center' as im %}
-													<img src="{{im.url}}">
-												{% endthumbnail %}
-											{% endif %}
-										</a>
-									</li>
-								{% endfor %}
-							</ul>
-						</div>
-						<div class="col-50">
-							<h3>Օպոնենտ<span>Երկ, Չրք, 19:30</span></h3>
-							<ul>
-								{% for item in program_6_data %}	
-									<li class="col-50 icon-youtube-play">
-										<a href="{% url 'article' item.id %}">
-											{% if item.video %}
-												{% video item.video as my_video %}
-													{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
-														<img src="{{ im.url }}">
-													{% endthumbnail %}
-												{% endvideo %}
-											{% elif item.img %}
-												{% thumbnail item.img  '280x180' crop='center' as im %}
-													<img src="{{im.url}}">
-												{% endthumbnail %}
-											{% endif %}
-										</a>
-									</li>
-								{% endfor %}
-							</ul>
+				<div class="clearfix"></div>
+				<a id="prev2" class="prev icon-angle-left" href="#"></a> <a id="next2" class="next icon-angle-right" href="#"></a>
+				<div id="pager2" class="pager"></div>
+			</div>
+		</div>
+	</div>
+	<div class="watch-live">
+		<div class="container">
+			<h2 class="heading col-100">Հիմա եթերում</h2>
+			<div class=" video-live col-50 icon-youtube-play">
+				<img src="images/slide2.jpg">
+			</div>
+			<div class="tv-program col-50">
+				<h3>Ծրագիր</h3>
+				<h5 class="today">Այսօր, 22.07.2017 Շաբաթ</h5>
+				<ul>					
+					{% for item in program_date_data %}
+						<li>
+							<span class="time">{{item.date|date:"H:i" }}</span>
+							<span class="program-name">{{item.title}}</span>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="programs">
+		<h2 class="container heading">Հաղորդումներ</h2>
+		<ul class="container programs-list">
+			<li class="program col-25">
+				<a href="#">
+					<div class="main-img">
+						<img src="images/slide1.jpg">
+						<div class="description">
+							<h3>Հայլուր</h3>
+							<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
 						</div>
 					</div>
+					<h4>Հայլուր <span>Ամեն օր, 21:00</span></h4>
+				</a>
+			</li>
+			<li class="program col-25">
+				<div class="main-img">
+					<img src="images/shtapognutyun1.jpg">
+					<div class="description">
+						<h3>Շտապ Օգնություն</h3>
+						<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
+					</div>
 				</div>
-			</div>
-			<div class="best-watch-list">
-				<div class="container">
-					<h2 class="heading">Ամենադիտվածը</h2>
-					<ul class="list-inline">
-						{% for item in most_viewed_data %}					
-							<li class="col-25 icon-youtube-play">
+				<h4>Շտապ Օգնություն <span>Երկ - Ուրբ, 19:00</span></h4>
+			</li>
+			<li class="program col-25">
+				<div class="main-img">
+					<img src="images/nairyan1.jpg">
+					<div class="description">
+						<h3>Նաիրյան Արկածներ</h3>
+						<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
+					</div>
+				</div>
+				<h4>Նաիրյան Արկածներ <span>Կրկ, 22:00</span></h4>
+			</li>
+			<li class="program col-25">
+				<div class="main-img">
+					<img src="images/antipatmutyun1.jpg">
+					<div class="description">
+						<h3>Հայլուր</h3>
+						<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
+					</div>
+				</div>
+				<h4>Անտիպատմություն <span>Ամեն օր, 21:00</span></h4>
+			</li>
+			<li class="program col-25">
+				<div class="main-img">
+					<img src="images/oponent1.jpg">
+					<div class="description">
+						<h3>Նաիրյան Արկածներ</h3>
+						<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
+					</div>
+				</div>
+				<h4>Օպոնենտ <span>Կրկ, 22:00</span></h4>
+			</li>
+			<li class="program col-25">
+				<div class="main-img">
+					<img src="images/tohmacar1.jpg">
+					<div class="description">
+						<h3>Հայլուր</h3>
+						<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
+					</div>
+				</div>
+				<h4>Տոհմածառ <span>Ամեն օր, 21:00</span></h4>
+			</li>
+			<li class="program col-25">
+				<div class="main-img">
+					<img src="images/slide2.jpg">
+					<div class="description">
+						<h3>Շտապ Օգնություն</h3>
+						<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
+					</div>
+				</div>
+				<h4>Շտապ Օգնություն <span>Երկ - Ուրբ, 19:00</span></h4>
+			</li>
+			<li class="program col-25">
+				<div class="main-img">
+					<img src="images/slide3.jpg">
+					<div class="description">
+						<h3>Հայլուր</h3>
+						<p>Հանրապետության Նախագահը մասնակցել է ԱՊՀ պետությունների ղեկավարների խորհրդի նիստին:</p>
+					</div>
+				</div>
+				<h4>Հայլուր <span>Ամեն օր, 21:00</span></h4>
+			</li>
+		</ul>
+		<div class="programs-categories">
+			<div class="container">
+				<div class="col-50">
+					<h3>Հայլուր</h3>
+					<ul>
+						{% for item in program_1_data %}	
+							<li class="col-50 icon-youtube-play">
 								<a href="{% url 'article' item.id %}">
 									{% if item.video %}
 										{% video item.video as my_video %}
@@ -350,7 +218,140 @@
 											<img src="{{im.url}}">
 										{% endthumbnail %}
 									{% endif %}
-									<h2 class="program-name">{{ item.title }}</h2>
+									<h4 class="title-date">
+										<span class="title">{{item.title }}</span>
+										<span class="date">{{item.publish_date|date:"j.m.Y H:i" }}</span>
+									</h4>
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="col-50">
+					<h3>Նաիրյան Արկածներ<span>Կրկ, 22:00</span></h3>
+					<ul>
+						{% for item in program_2_data %}	
+							<li class="col-50 icon-youtube-play">
+								<a href="{% url 'article' item.id %}">
+									{% if item.video %}
+										{% video item.video as my_video %}
+											{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+												<img src="{{ im.url }}">
+											{% endthumbnail %}
+										{% endvideo %}
+									{% elif item.img %}
+										{% thumbnail item.img  '280x180' crop='center' as im %}
+											<img src="{{im.url}}">
+										{% endthumbnail %}
+									{% endif %}
+									<h4 class="title-date">
+										<span class="title">{{item.title }}</span>
+										<span class="date">{{item.publish_date|date:"j.m.Y H:i" }}</span>
+									</h4>
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="col-50">
+					<h3>Շտապ Օգնություն<span>Երկ - Ուրբ, 19:00</span></h3>
+					<ul>
+						{% for item in program_3_data %}	
+							<li class="col-50 icon-youtube-play">
+								<a href="{% url 'article' item.id %}">
+									{% if item.video %}
+										{% video item.video as my_video %}
+											{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+												<img src="{{ im.url }}">
+											{% endthumbnail %}
+										{% endvideo %}
+									{% elif item.img %}
+										{% thumbnail item.img  '280x180' crop='center' as im %}
+											<img src="{{im.url}}">
+										{% endthumbnail %}
+									{% endif %}
+									<h4 class="title-date">
+										<span class="title">{{item.title }}</span>
+										<span class="date">{{item.publish_date|date:"j.m.Y H:i" }}</span>
+									</h4>
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="col-50">
+					<h3>Անտիպատմություն<span>Ամեն օր, 17:00</span></h3>
+					<ul>
+						{% for item in program_4_data %}	
+							<li class="col-50 icon-youtube-play">
+								<a href="{% url 'article' item.id %}">
+									{% if item.video %}
+										{% video item.video as my_video %}
+											{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+												<img src="{{ im.url }}">
+											{% endthumbnail %}
+										{% endvideo %}
+									{% elif item.img %}
+										{% thumbnail item.img  '280x180' crop='center' as im %}
+											<img src="{{im.url}}">
+										{% endthumbnail %}
+									{% endif %}
+									<h4 class="title-date">
+										<span class="title">{{item.title }}</span>
+										<span class="date">{{item.publish_date|date:"j.m.Y H:i" }}</span>
+									</h4>
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="col-50">
+					<h3>Տոհմածառ<span>Երք 18:00</span></h3>
+					<ul>
+						{% for item in program_5_data %}	
+							<li class="col-50 icon-youtube-play">
+								<a href="{% url 'article' item.id %}">
+									{% if item.video %}
+										{% video item.video as my_video %}
+											{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+												<img src="{{ im.url }}">
+											{% endthumbnail %}
+										{% endvideo %}
+									{% elif item.img %}
+										{% thumbnail item.img  '280x180' crop='center' as im %}
+											<img src="{{im.url}}">
+										{% endthumbnail %}
+									{% endif %}
+									<h4 class="title-date">
+										<span class="title">{{item.title }}</span>
+										<span class="date">{{item.publish_date|date:"j.m.Y H:i" }}</span>
+									</h4>
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="col-50">
+					<h3>Օպոնենտ<span>Երկ, Չրք, 19:30</span></h3>
+					<ul>
+						{% for item in program_6_data %}	
+							<li class="col-50 icon-youtube-play">
+								<a href="{% url 'article' item.id %}">
+									{% if item.video %}
+										{% video item.video as my_video %}
+											{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+												<img src="{{ im.url }}">
+											{% endthumbnail %}
+										{% endvideo %}
+									{% elif item.img %}
+										{% thumbnail item.img  '280x180' crop='center' as im %}
+											<img src="{{im.url}}">
+										{% endthumbnail %}
+									{% endif %}
+									<h4 class="title-date">
+										<span class="title">{{item.title }}</span>
+										<span class="date">{{item.publish_date|date:"j.m.Y H:i" }}</span>
+									</h4>
 								</a>
 							</li>
 						{% endfor %}
@@ -358,4 +359,31 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="best-watch-list">
+		<div class="container">
+			<h2 class="heading">Ամենադիտվածը</h2>
+			<ul class="list-inline">
+				{% for item in most_viewed_data %}					
+					<li class="col-25 icon-youtube-play">
+						<a href="{% url 'article' item.id %}">
+							{% if item.video %}
+								{% video item.video as my_video %}
+									{% thumbnail my_video.thumbnail  '280x180' crop='center' as im %}
+										<img src="{{ im.url }}">
+									{% endthumbnail %}
+								{% endvideo %}
+							{% elif item.img %}
+								{% thumbnail item.img  '280x180' crop='center' as im %}
+									<img src="{{im.url}}">
+								{% endthumbnail %}
+							{% endif %}
+							<h2 class="program-name">{{ item.title }}</h2>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
 {% endblock %}

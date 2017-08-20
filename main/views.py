@@ -43,7 +43,7 @@ def get_most_viewed(limit):
 
 def get_article_related(program_id, limit):
     data = Content.objects.filter(category=program_id).values(
-        'id', 'title', 'img', 'video', 'publish_date').order_by('-hit_count')[:limit]
+        'id', 'title', 'img', 'video', 'publish_date').order_by('-publish_date')[:limit]
     return data
 
 
@@ -60,10 +60,12 @@ def get_program_date():
 # --------------- Views ------------------
 
 
-@cache_page(10)
+@cache_page(60*60*24)
 def index(request):
     general_slider_data = get_general_slider(5)
     news_line_data = get_news_line(15)
+    haylur_data = get_program(4, 16)
+    program_date_data = get_program_date()
     program_1_data = get_program(1, 4)
     program_2_data = get_program(2, 4)
     program_3_data = get_program(3, 4)
@@ -71,28 +73,28 @@ def index(request):
     program_5_data = get_program(5, 4)
     program_6_data = get_program(6, 4)
     most_viewed_data = get_most_viewed(4)
-    program_date_data = get_program_date()
-    print program_date_data
+
     context = {
         'general_slider_data': general_slider_data,
         'news_line_data': news_line_data,
-        'most_viewed_data': most_viewed_data,
+        'haylur_data': haylur_data,
+        'program_date_data': program_date_data,
         'program_1_data': program_1_data,
         'program_2_data': program_2_data,
         'program_3_data': program_3_data,
         'program_4_data': program_4_data,
         'program_5_data': program_5_data,
         'program_6_data': program_6_data,
-        'program_date_data': program_date_data,
+        'most_viewed_data': most_viewed_data,
     }
     return render(request, 'main/index.html', context)
 
 
-@cache_page(1)
+@cache_page(60*60*24)
 def article(request, article_id):
     try:
         article = Content.objects.get(pk=article_id)
-        article_related_data = get_article_related(article.category.all().first(), 4)
+        article_related_data = get_article_related(article.category.all().first(), 14)
     except Content.DoesNotExist:
         return redirect('/')
 
@@ -103,7 +105,7 @@ def article(request, article_id):
     return response
 
 
-@cache_page(1)
+@cache_page(60*60*24)
 def program(request, program_id):
     try:
         category_obj = Category.objects.get(id=program_id)
