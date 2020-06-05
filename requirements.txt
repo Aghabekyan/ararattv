@@ -1,6 +1,6 @@
 certifi==2017.7.27.1
 chardet==3.0.4
-Django==1.7
+Django==1.11.29
 django-admin-bootstrapped==2.4.0
 django-embed-video==1.1.2
 django-modeladmin-reorder==0.2
